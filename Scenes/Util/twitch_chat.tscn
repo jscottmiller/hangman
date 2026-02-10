@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://d15c1ft2yhjju"]
+
+[ext_resource type="Script" path="res://Scenes/Util/TwitchChat.gd" id="1_wvd0s"]
+
+[node name="TwitchChat" type="Node"]
+script = ExtResource("1_wvd0s")
+
+[node name="PingTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 60.0
+
+[node name="ReconnectTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="PingTimer" to="." method="_on_ping_timer_timeout"]

@@ -1,0 +1,27 @@
+# Godot 4 specific
+.godot/
+
+# Twitch config (contains credentials)
+Scenes/Util/twitch_config.gd
+
+# Godot import files
+*.import
+
+# Exported builds
+Exports/
+
+# Source audio files (stock audio)
+Sounds/Originals/
+
+# Windows NTFS alternate data streams
+*:Zone.Identifier
+
+# Claude Code local settings
+.claude/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor backups
+*~

@@ -1,0 +1,156 @@
+[gd_scene load_steps=7 format=3 uid="uid://dc1isltckj6vy"]
+
+[ext_resource type="Script" path="res://Scenes/Game/menu.gd" id="1_l21q7"]
+[ext_resource type="Texture2D" uid="uid://jx2ahk6aw6fb" path="res://Graphics/Background.jpg" id="2_2dq5d"]
+[ext_resource type="FontFile" uid="uid://dtsu4kxx8h384" path="res://Graphics/Chaloops.otf" id="3_o7qcc"]
+[ext_resource type="Texture2D" uid="uid://bnpymxlvu6lrq" path="res://Graphics/cowboyscott.png" id="4_sde1r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my0hq"]
+bg_color = Color(0.364706, 0.364706, 0.364706, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="Theme" id="Theme_6fche"]
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/constants/outline_size = 0
+Label/font_sizes/font_size = 16
+Label/fonts/font = null
+LinkButton/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_my0hq")
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_6fche")
+script = ExtResource("1_l21q7")
+
+[node name="Background" type="Sprite2D" parent="."]
+self_modulate = Color(0.870588, 0.870588, 0.870588, 1)
+position = Vector2(960, 545)
+scale = Vector2(0.476066, 0.361938)
+texture = ExtResource("2_2dq5d")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_o7qcc")
+theme_override_font_sizes/font_size = 160
+text = "Hangman"
+horizontal_alignment = 1
+
+[node name="ButtonsCenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/ButtonsCenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ButtonsCenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ButtonsCenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LoginButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsCenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Login with Twitch"
+
+[node name="TokenContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ButtonsCenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TokenInput" type="TextEdit" parent="MarginContainer/VBoxContainer/ButtonsCenterContainer/PanelContainer/MarginContainer/VBoxContainer/TokenContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+placeholder_text = "Paste Twitch token here"
+
+[node name="SaveTokenButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsCenterContainer/PanelContainer/MarginContainer/VBoxContainer/TokenContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Save"
+
+[node name="LogoutButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsCenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Log out of Twitch"
+
+[node name="ChannelLabel" type="Label" parent="MarginContainer/VBoxContainer/ButtonsCenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Channel to monitor for guesses"
+
+[node name="ChannelInput" type="TextEdit" parent="MarginContainer/VBoxContainer/ButtonsCenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+placeholder_text = "Channel name"
+
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsCenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Start game!"
+
+[node name="MeCenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MeCenterContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MeCenterContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_sde1r")
+expand_mode = 5
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/MeCenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LinkButton" type="LinkButton" parent="MarginContainer/VBoxContainer/MeCenterContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.00784314, 0.32549, 0.760784, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0.713726, 1)
+theme_override_colors/font_hover_color = Color(0, 0.0823529, 0.439216, 1)
+theme_override_font_sizes/font_size = 24
+text = "cowboyscott.gg"
+uri = "https://cowboyscott.gg"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsCenterContainer/PanelContainer/MarginContainer/VBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsCenterContainer/PanelContainer/MarginContainer/VBoxContainer/TokenContainer/SaveTokenButton" to="." method="_on_save_token_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsCenterContainer/PanelContainer/MarginContainer/VBoxContainer/LogoutButton" to="." method="_on_logout_button_pressed"]
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/ButtonsCenterContainer/PanelContainer/MarginContainer/VBoxContainer/ChannelInput" to="." method="_on_channel_input_text_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsCenterContainer/PanelContainer/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

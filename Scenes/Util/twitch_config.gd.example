@@ -1,0 +1,8 @@
+extends RefCounted
+class_name TwitchConfig
+
+# Create your Twitch application at: https://dev.twitch.tv/console/apps
+# Set the OAuth Redirect URL to your own domain or use a localhost URL for testing
+
+const CLIENT_ID := "your_twitch_client_id_here"
+const REDIRECT_URL := "http://localhost:3000/auth"

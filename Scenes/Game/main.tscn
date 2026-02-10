@@ -1,0 +1,568 @@
+[gd_scene load_steps=30 format=3 uid="uid://sqvglhuo86e8"]
+
+[ext_resource type="Texture2D" uid="uid://bpovdfl304q3q" path="res://Graphics/Pole 1.png" id="1_j1t6j"]
+[ext_resource type="Script" path="res://Scenes/Game/main.gd" id="1_pifbs"]
+[ext_resource type="Texture2D" uid="uid://bcb2wk5rtne7" path="res://Graphics/Pole 2.png" id="2_04s44"]
+[ext_resource type="FontFile" uid="uid://dtsu4kxx8h384" path="res://Graphics/Chaloops.otf" id="2_sw2d6"]
+[ext_resource type="Texture2D" uid="uid://dsl0xaifk280u" path="res://Graphics/Pole 3.png" id="3_5fm6f"]
+[ext_resource type="Texture2D" uid="uid://jx2ahk6aw6fb" path="res://Graphics/Background.jpg" id="3_rxlb1"]
+[ext_resource type="Texture2D" uid="uid://dk2lejjv0ouel" path="res://Graphics/Stand.png" id="4_p2vn8"]
+[ext_resource type="Texture2D" uid="uid://bfvduycoo1cl2" path="res://Graphics/Legs.png" id="5_immjh"]
+[ext_resource type="Texture2D" uid="uid://bdla7vxfoitcb" path="res://Graphics/Torso.png" id="6_6not6"]
+[ext_resource type="Texture2D" uid="uid://huplgms2esm" path="res://Graphics/Arms.png" id="7_wh5wc"]
+[ext_resource type="Texture2D" uid="uid://tseevvu43s3f" path="res://Graphics/Head alive.png" id="8_p6fgi"]
+[ext_resource type="Texture2D" uid="uid://crdh2y6l7yqmw" path="res://Graphics/Head dead.png" id="9_higuv"]
+[ext_resource type="Texture2D" uid="uid://ct1uy2pquin16" path="res://Graphics/Noose.png" id="10_rkn3j"]
+[ext_resource type="PackedScene" uid="uid://b4lccsp3ur68w" path="res://Scenes/Game/letter.tscn" id="11_ujgek"]
+[ext_resource type="PackedScene" uid="uid://d15c1ft2yhjju" path="res://Scenes/Util/twitch_chat.tscn" id="13_erd1x"]
+[ext_resource type="AudioStream" uid="uid://bxxfdyn7dqjom" path="res://Sounds/round_loss.ogg" id="14_rsy1s"]
+[ext_resource type="AudioStream" uid="uid://dbxnstsdn3xq2" path="res://Sounds/round_win.ogg" id="15_u61bw"]
+[ext_resource type="AudioStream" uid="uid://drbwcmxyal8od" path="res://Sounds/bad_guess.ogg" id="18_tgoji"]
+[ext_resource type="AudioStream" uid="uid://4o5fo5hxhkcv" path="res://Sounds/correct_guess.ogg" id="19_25ocl"]
+[ext_resource type="AudioStream" uid="uid://cgv42o68qrsai" path="res://Sounds/results.ogg" id="20_ob26k"]
+
+[sub_resource type="Theme" id="Theme_0uh4t"]
+Label/colors/font_color = Color(0.952941, 0.94902, 0.933333, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 8
+Label/font_sizes/font_size = 28
+Label/fonts/font = ExtResource("2_sw2d6")
+
+[sub_resource type="Animation" id="Animation_gtf67"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/ResultsUI/RightEmitter:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_qsocf"]
+resource_name = "correct guess"
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("19_25ocl")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="Animation" id="Animation_tuhmm"]
+resource_name = "game over"
+length = 10.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/RoundUI:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/ResultsUI:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/ResultsUI/LeftEmitter:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/ResultsUI/RightEmitter:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("20_ob26k")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_start_game"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_aqrjp"]
+resource_name = "incorrect guess"
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("18_tgoji")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="Animation" id="Animation_opihf"]
+resource_name = "round loss"
+length = 5.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.1,
+"stream": ExtResource("14_rsy1s")
+}],
+"times": PackedFloat32Array(0.8)
+}
+tracks/0/use_blend = true
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.02,
+"start_offset": 0.0,
+"stream": ExtResource("18_tgoji")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_5wvyk"]
+resource_name = "round win"
+length = 5.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("15_u61bw")
+}],
+"times": PackedFloat32Array(1)
+}
+tracks/0/use_blend = true
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("19_25ocl")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_y6tcn"]
+resource_name = "start game"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/RoundUI:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/ResultsUI:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/ResultsUI/LeftEmitter:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/ResultsUI/RightEmitter:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j8ly3"]
+_data = {
+"RESET": SubResource("Animation_gtf67"),
+"correct guess": SubResource("Animation_qsocf"),
+"game over": SubResource("Animation_tuhmm"),
+"incorrect guess": SubResource("Animation_aqrjp"),
+"round loss": SubResource("Animation_opihf"),
+"round win": SubResource("Animation_5wvyk"),
+"start game": SubResource("Animation_y6tcn")
+}
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_pifbs")
+
+[node name="UI" type="ColorRect" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 8
+theme = SubResource("Theme_0uh4t")
+
+[node name="Background" type="Sprite2D" parent="UI"]
+self_modulate = Color(0.870588, 0.870588, 0.870588, 1)
+position = Vector2(960, 545)
+scale = Vector2(0.476066, 0.361938)
+texture = ExtResource("3_rxlb1")
+
+[node name="RoundUI" type="Control" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RoundLabel" type="Label" parent="UI/RoundUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 125.0
+offset_bottom = 192.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "Round 1"
+horizontal_alignment = 1
+
+[node name="Timer" type="Label" parent="UI/RoundUI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -264.0
+offset_top = 125.0
+offset_right = -130.0
+offset_bottom = 225.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 64
+text = "0:00"
+
+[node name="WordContainer" type="HBoxContainer" parent="UI/RoundUI"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 225.0
+offset_bottom = 325.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Letter" parent="UI/RoundUI/WordContainer" instance=ExtResource("11_ujgek")]
+layout_mode = 2
+
+[node name="Letter2" parent="UI/RoundUI/WordContainer" instance=ExtResource("11_ujgek")]
+layout_mode = 2
+
+[node name="Letter3" parent="UI/RoundUI/WordContainer" instance=ExtResource("11_ujgek")]
+layout_mode = 2
+
+[node name="Hangman" type="Node2D" parent="UI/RoundUI"]
+position = Vector2(214, 340)
+
+[node name="HangmanParts" type="Node2D" parent="UI/RoundUI/Hangman"]
+unique_name_in_owner = true
+
+[node name="Pole1" type="Sprite2D" parent="UI/RoundUI/Hangman/HangmanParts"]
+position = Vector2(42, 407)
+texture = ExtResource("1_j1t6j")
+metadata/_edit_lock_ = true
+
+[node name="Pole2" type="Sprite2D" parent="UI/RoundUI/Hangman/HangmanParts"]
+position = Vector2(85, 162)
+texture = ExtResource("2_04s44")
+metadata/_edit_lock_ = true
+
+[node name="Pole3" type="Sprite2D" parent="UI/RoundUI/Hangman/HangmanParts"]
+position = Vector2(232, 89)
+texture = ExtResource("3_5fm6f")
+metadata/_edit_lock_ = true
+
+[node name="Stand" type="Sprite2D" parent="UI/RoundUI/Hangman/HangmanParts"]
+unique_name_in_owner = true
+position = Vector2(283, 536)
+texture = ExtResource("4_p2vn8")
+metadata/_edit_lock_ = true
+
+[node name="Legs" type="Sprite2D" parent="UI/RoundUI/Hangman/HangmanParts"]
+position = Vector2(278, 446)
+texture = ExtResource("5_immjh")
+metadata/_edit_lock_ = true
+
+[node name="Torso" type="Sprite2D" parent="UI/RoundUI/Hangman/HangmanParts"]
+position = Vector2(273, 337)
+texture = ExtResource("6_6not6")
+metadata/_edit_lock_ = true
+
+[node name="Arms" type="Sprite2D" parent="UI/RoundUI/Hangman/HangmanParts"]
+position = Vector2(265, 313)
+texture = ExtResource("7_wh5wc")
+metadata/_edit_lock_ = true
+
+[node name="HeadAlive" type="Sprite2D" parent="UI/RoundUI/Hangman/HangmanParts"]
+unique_name_in_owner = true
+position = Vector2(277, 224)
+texture = ExtResource("8_p6fgi")
+metadata/_edit_lock_ = true
+
+[node name="Noose" type="Sprite2D" parent="UI/RoundUI/Hangman/HangmanParts"]
+position = Vector2(264, 190)
+texture = ExtResource("10_rkn3j")
+metadata/_edit_lock_ = true
+
+[node name="HeadDead" type="Sprite2D" parent="UI/RoundUI/Hangman"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(302, 189)
+texture = ExtResource("9_higuv")
+metadata/_edit_lock_ = true
+
+[node name="GuessesLabel" type="Label" parent="UI/RoundUI"]
+layout_mode = 0
+offset_left = 855.0
+offset_top = 380.0
+offset_right = 1109.0
+offset_bottom = 471.0
+theme_override_font_sizes/font_size = 48
+text = "Guesses"
+
+[node name="GuessesGrid" type="GridContainer" parent="UI/RoundUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 861.0
+offset_top = 450.0
+offset_right = 901.0
+offset_bottom = 490.0
+columns = 2
+
+[node name="ScoresLabel" type="Label" parent="UI/RoundUI"]
+layout_mode = 0
+offset_left = 1413.0
+offset_top = 380.0
+offset_right = 1667.0
+offset_bottom = 471.0
+theme_override_font_sizes/font_size = 48
+text = "Scores
+"
+
+[node name="ScoresGrid" type="GridContainer" parent="UI/RoundUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1416.0
+offset_top = 450.0
+offset_right = 1416.0
+offset_bottom = 450.0
+columns = 2
+
+[node name="HowToPlay" type="Label" parent="UI/RoundUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -439.5
+offset_top = -62.0
+offset_right = 439.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Type a letter or word to make a guess!"
+horizontal_alignment = 1
+
+[node name="ResultsUI" type="Control" parent="UI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResultsLabel" type="Label" parent="UI/ResultsUI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 200.0
+offset_bottom = 267.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 80
+text = "Results"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/ResultsUI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 350.0
+offset_bottom = 350.0
+grow_horizontal = 2
+
+[node name="ResultsGrid" type="GridContainer" parent="UI/ResultsUI/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[node name="LeftEmitter" type="CPUParticles2D" parent="UI/ResultsUI"]
+position = Vector2(164, 164)
+amount = 20
+lifetime = 3.0
+explosiveness = 0.25
+randomness = 0.4
+lifetime_randomness = 0.1
+texture = ExtResource("8_p6fgi")
+direction = Vector2(1, 1)
+spread = 51.07
+initial_velocity_min = 468.16
+initial_velocity_max = 468.16
+
+[node name="RightEmitter" type="CPUParticles2D" parent="UI/ResultsUI"]
+position = Vector2(1691, 149)
+amount = 20
+lifetime = 3.0
+explosiveness = 0.25
+randomness = 0.4
+lifetime_randomness = 0.1
+texture = ExtResource("8_p6fgi")
+direction = Vector2(-1, 1)
+spread = 51.07
+initial_velocity_min = 468.16
+initial_velocity_max = 468.16
+
+[node name="TwitchChat" parent="." instance=ExtResource("13_erd1x")]
+
+[node name="RoundTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 120.0
+one_shot = true
+
+[node name="EndRoundTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 6.0
+one_shot = true
+
+[node name="Animations" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_j8ly3")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 4
+
+[connection signal="auth_failed" from="TwitchChat" to="." method="_on_twitch_chat_auth_failed"]
+[connection signal="chat_message" from="TwitchChat" to="." method="_on_twitch_chat_chat_message"]
+[connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
+[connection signal="timeout" from="EndRoundTimer" to="." method="_on_end_round_timer_timeout"]
