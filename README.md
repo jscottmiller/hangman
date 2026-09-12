@@ -2,6 +2,8 @@
 
 A hangman game for Twitch streamers. Your viewers guess letters and words in chat to play along.
 
+> **Note:** This README was generated with AI. The game itself was not — it was designed, coded, and shipped by hand.
+
 [Gameplay Video](https://www.youtube.com/watch?v=IyTr7-XQBfY)
 
 ## Features
